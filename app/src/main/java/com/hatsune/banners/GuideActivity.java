@@ -72,7 +72,7 @@ public class GuideActivity extends AppCompatActivity {
         xBanners.setCanLoop(false);
         xBanners.setScrollDurtion(1200);
         xBanners.setIndicatorBottomPadding(30);
-        xBanners.setIndicatorWidth(10);
+        xBanners.setIndicatorWidth(10,10);
 //      xBanners.setHoriZontalTransitionEffect(TransitionEffect.Default);
         xBanners.setHoriZontalCustomTransformer(new ParallaxTransformer(R.id.id_image));
         xBanners.setIndicatorPosition(XBanners.IndicaTorPosition.BOTTOM_MID);

@@ -50,6 +50,7 @@ public class XBanners<T> extends FrameLayout implements ViewPager.OnPageChangeLi
     private LinearLayout indicatorLayout;
     private LBaseAdapter adapter;
     private int pageItemWidth;
+    private int pageItemHeight;
     private ViewPagerScroller mScroller;
     private ViewPagerAdapter mAdapter;
 
@@ -69,6 +70,8 @@ public class XBanners<T> extends FrameLayout implements ViewPager.OnPageChangeLi
     private int mSlectIndicatorRes = R.drawable.page_indicator_select;//选中指示器
     private int mUnSlectIndicatorRes = R.drawable.page_indicator_unselect;//未选中指示器
     private int mIndicatorWidth = 5;//默认指示器大小
+    private int mIndicatorHeight=5;//高度
+
 
 
     private int mTextColor = Color.WHITE;//文字颜色
@@ -124,6 +127,7 @@ public class XBanners<T> extends FrameLayout implements ViewPager.OnPageChangeLi
         mUnSlectIndicatorRes = typedArray.getResourceId(R.styleable.LMBanners_indicator_unselect, R.drawable.page_indicator_unselect);
         indicatorBottomPadding = typedArray.getInt(R.styleable.LMBanners_indicatorBottomPadding, 20);
         mIndicatorWidth = typedArray.getInteger(R.styleable.LMBanners_indicator_width, 5);//指示器大小
+        mIndicatorHeight = typedArray.getInteger(R.styleable.LMBanners_indicator_height, 5);//指示器大小
         pageTransFormerIndex = typedArray.getInt(R.styleable.LMBanners_horizontal_transitionEffect, TransitionEffect.Default.ordinal());
         mTransitionEffect = TransitionEffect.values()[pageTransFormerIndex];
         isVertical = typedArray.getBoolean(R.styleable.LMBanners_isVertical, false);
@@ -145,6 +149,7 @@ public class XBanners<T> extends FrameLayout implements ViewPager.OnPageChangeLi
         this.btnStart = (Button) view.findViewById(R.id.btn_start);
 
         pageItemWidth = ScreenUtils.dip2px(context, mIndicatorWidth);
+        pageItemHeight=ScreenUtils.dip2px(context,mIndicatorHeight);
         this.viewPager.addOnPageChangeListener(this);
         setIndicatorBottomPadding();
         //如果是纵向滑动重新进行初始化
@@ -195,7 +200,7 @@ public class XBanners<T> extends FrameLayout implements ViewPager.OnPageChangeLi
             View view = new View(context);
             if (currentPosition == i) {
                 view.setPressed(true);
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(pageItemWidth + ScreenUtils.dip2px(context, 3), pageItemWidth + ScreenUtils.dip2px(context, 3));
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(pageItemHeight + ScreenUtils.dip2px(context, 3), pageItemWidth + ScreenUtils.dip2px(context, 3));
                 params.setMargins(pageItemWidth, 0, 0, 0);
                 view.setLayoutParams(params);
                 view.setBackgroundResource(mSlectIndicatorRes);
@@ -288,7 +293,7 @@ public class XBanners<T> extends FrameLayout implements ViewPager.OnPageChangeLi
             View view = indicatorLayout.getChildAt(i);
             if (position % showCount == i) {
                 view.setSelected(true);
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(pageItemWidth + ScreenUtils.dip2px(context, 3), pageItemWidth + ScreenUtils.dip2px(context, 3));
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(pageItemHeight, pageItemWidth);
                 params.setMargins(pageItemWidth, 0, 0, 0);
                 view.setLayoutParams(params);
                 view.setBackgroundResource(mSlectIndicatorRes);
@@ -477,9 +482,11 @@ public class XBanners<T> extends FrameLayout implements ViewPager.OnPageChangeLi
      *
      * @param width
      */
-    public void setIndicatorWidth(int width) {
+    public void setIndicatorWidth(int width,int height) {
         this.mIndicatorWidth = width;
+        this.mIndicatorHeight = height;
         pageItemWidth = ScreenUtils.dip2px(context, mIndicatorWidth);
+        pageItemHeight = ScreenUtils.dip2px(context, mIndicatorHeight);
     }
 
     /**

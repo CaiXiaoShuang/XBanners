@@ -57,11 +57,11 @@ public class MainActivity extends AppCompatActivity {
         xBanners.setVertical(false);//是否锤子播放
         xBanners.setScrollDurtion(2000);//两页切换时间
         xBanners.setCanLoop(true);//循环播放
-        xBanners.setSelectIndicatorRes(R.drawable.guide_indicator_select);//选中的原点
-        xBanners.setUnSelectUnIndicatorRes(R.drawable.guide_indicator_unselect);//未选中的原点
+        xBanners.setSelectIndicatorRes(R.drawable.icon_point_white);//选中的原点
+        xBanners.setUnSelectUnIndicatorRes(R.drawable.icon_point);//未选中的原点
         //若自定义原点到底部的距离,默认20,必须在setIndicatorWidth之前调用
         xBanners.setIndicatorBottomPadding(30);
-        xBanners.setIndicatorWidth(10);//原点默认为5dp
+        xBanners.setIndicatorWidth(10,20);//原点默认为5dp
         xBanners.setHoriZontalTransitionEffect(TransitionEffect.ZoomStack);//选中喜欢的样式
 //        xBanners.setHoriZontalCustomTransformer(new ParallaxTransformer(R.id.id_image));//自定义样式
         xBanners.setDurtion(3000);//轮播切换时间
